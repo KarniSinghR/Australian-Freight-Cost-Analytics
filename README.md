@@ -6,6 +6,7 @@ interactive scenario-planning tool — built with Python, PostgreSQL, and Stream
 
 **[🔗 Live Dashboard](https://australian-freight-cost-analytics-ktynsksrum4mvctbzgieqb.streamlit.app/)** · **[📊 Insights & Recommendations](insights.md)**
 
+![Dashboard demo](dashboard/demo.gif)
 ---
 
 ## What this project does
