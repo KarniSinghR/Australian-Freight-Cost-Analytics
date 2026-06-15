@@ -4,7 +4,7 @@ An end-to-end analytics platform that ingests Australian economic data, analyses
 what drives road freight costs, forecasts future trends, and provides an
 interactive scenario-planning tool — built with Python, PostgreSQL, and Streamlit.
 
-**[🔗 Live Dashboard](ADD_YOUR_URL_HERE)** · **[📊 Insights & Recommendations](insights.md)**
+**[🔗 Live Dashboard](https://australian-freight-cost-analytics-ktynsksrum4mvctbzgieqb.streamlit.app/)** · **[📊 Insights & Recommendations](insights.md)**
 
 ---
 
