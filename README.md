@@ -40,17 +40,20 @@ platform answers four business questions:
 | Version control | Git / GitHub |
 
 ## Architecture
+
+```text
 ABS / AIP data (xlsx)
-│  extract.py  — pull series by ABS Series ID
-▼
-transform.py  — clean, align to quarterly, merge
-│  load.py
-▼
-PostgreSQL  (staging tables → fact_freight_analysis)
-│
-├── EDA & driver analysis (notebooks, statsmodels)
-├── Prophet forecast → forecast_results table
-└── Streamlit dashboard (5 pages, live from DB)
+        │  extract.py  — pull series by ABS Series ID
+        ▼
+   transform.py  — clean, align to quarterly, merge
+        │  load.py
+        ▼
+   PostgreSQL  (staging tables → fact_freight_analysis)
+        │
+        ├── EDA & driver analysis (notebooks, statsmodels)
+        ├── Prophet forecast → forecast_results table
+        └── Streamlit dashboard (5 pages, live from DB)
+```
 
 ## Data sources
 
@@ -80,6 +83,8 @@ streamlit run dashboard/app.py
 ```
 
 ## Repository structure
+
+```text
 ├── README.md
 ├── insights.md              # business findings & recommendations
 ├── requirements.txt
@@ -93,6 +98,7 @@ streamlit run dashboard/app.py
 │   └── simulator.py         # scenario engine (regression-based)
 ├── notebooks/               # EDA, driver analysis, forecasting
 └── dashboard/app.py         # Streamlit dashboard
+```
 
 ## Methodology notes
 
