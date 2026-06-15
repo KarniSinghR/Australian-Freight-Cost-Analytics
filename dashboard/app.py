@@ -16,11 +16,22 @@ st.set_page_config(page_title="Freight Cost Intelligence", page_icon="🚚", lay
 # --- Data loading (cached so it doesn't re-query on every interaction) ---
 @st.cache_data
 def load_data():
-    engine = create_engine("postgresql://karnisinghrathore@localhost:5432/freight_analytics")
-    facts = pd.read_sql("SELECT * FROM fact_freight_analysis ORDER BY quarter_date", engine)
-    forecast = pd.read_sql("SELECT * FROM forecast_results ORDER BY quarter_date", engine)
+    data_dir = os.path.join(os.path.dirname(__file__), "data")
+    try:
+        # Try the live database first (local development)
+        engine = create_engine("postgresql://karnisinghrathore@localhost:5432/freight_analytics")
+        facts = pd.read_sql("SELECT * FROM fact_freight_analysis ORDER BY quarter_date", engine)
+        forecast = pd.read_sql("SELECT * FROM forecast_results ORDER BY quarter_date", engine)
+    except Exception:
+        # Fall back to bundled CSVs (cloud deployment)
+        facts = pd.read_csv(os.path.join(data_dir, "facts.csv"))
+        forecast = pd.read_csv(os.path.join(data_dir, "forecast.csv"))
+
     facts["quarter_date"] = pd.to_datetime(facts["quarter_date"])
     forecast["quarter_date"] = pd.to_datetime(forecast["quarter_date"])
+    # Ensure the boolean flag is a real bool after CSV round-trip
+    if "is_future" in forecast.columns:
+        forecast["is_future"] = forecast["is_future"].astype(str).str.lower().isin(["true", "t", "1"])
     return facts, forecast
 
 facts, forecast = load_data()
